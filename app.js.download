@@ -1,0 +1,99 @@
+$(document).ready(function() {
+    
+    
+     if ($("nav").length > 0 ){
+        $("nav ul>li").each(function(e){ 
+            if ( $(this).find("ul").length > 0) {
+                $(this).addClass("submenu");
+            }
+        });
+    }
+    
+     
+    // slider 
+    if ($('.responsive').length > 0) {
+    $('.responsive').slick({
+          dots: false,
+          infinite: false,
+          speed: 300,
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 1070,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false
+              }
+            },
+            {
+              breakpoint: 940,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 560,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
+        });
+    }
+    
+
+
+    $(".title-trigger").on("click",function(event){
+        event.preventDefault();
+        $(this).toggleClass("active");   
+    })
+    
+    
+    // navigation 
+       $('nav > ul > li').on('mouseenter', function () {
+           if($(window).width() > 1100 ) {
+                $(this).addClass("active");
+           }
+           
+       }).on('mouseleave', function () {
+           if($(window).width() > 1100 ) {
+                $(this).removeClass("active");
+           }
+       })
+             
+       $(".submenu").on("click",function(){        
+           if ($(this).hasClass("active")){
+            $(this).toggleClass("active");
+           
+           }
+           else 
+           {             
+               $(".submenu").removeClass("active")  
+               $(this).toggleClass("active");
+               $('html, body').animate({
+                    scrollTop: $('.submenu.active').offset().top
+                }, 250);
+           } 
+       }) 
+
+	$('nav > a').on('click', function(event) {
+		event.preventDefault();
+		$('nav > ul').toggleClass('active');
+	});
+
+
+  
+
+});
